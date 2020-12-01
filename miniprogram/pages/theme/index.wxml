@@ -1,0 +1,4 @@
+<cu-custom bgColor="bg-black" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">主题切换</view>
+</cu-custom>

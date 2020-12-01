@@ -1,0 +1,128 @@
+
+<cu-custom bgColor="bg-black" isBack="{{false}}">
+	<view slot="content">名言分类</view>
+</cu-custom>
+
+<view class='cu-custom'>
+  <view class="cu-bar fixed bg-shadeTop" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+
+    <view class='content' style='top:{{StatusBar}}px;'>名言分类</view>
+  </view>
+</view>
+<swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000"
+  duration="500">
+  <swiper-item wx:for="{{topBarImages}}" wx:key>
+    <image wx:if="{{item}}" src='{{item}}' mode='aspectFill'></image>
+  </swiper-item>
+</swiper>
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}"
+    style="height:calc(100vh - 375rpx)">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{categories}}" wx:key bindtap='tabSelect'
+      data-id="{{index}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)"
+    scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+    <view class="padding-top padding-lr" wx:for="{{categories}}" wx:key id="main-{{index}}">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action'>
+          <text class='cuIcon-title text-green'></text> {{item.name}} </view>
+      </view>
+      <view class="cu-list menu-avatar">
+        <view class="cu-item" wx:for="{{item.senstenceList}}" wx:key wx:for-item="sItem">
+
+
+          <van-image
+        class="avatarNewClass"
+  width="40px"
+  height="40px"
+  round
+  fit="cover"
+  bindtap="clickAvatar" 
+  data-personid="{{sItem.FamousPersonId}}"
+  src="{{sItem.FamousPersonAvatar}}"
+/>
+
+
+          <!-- <view class="cu-avatar round lg" bindtap="clickAvatar" data-personid="{{sItem.FamousPersonId}}">
+            <image mode="aspectFit" src="{{sItem.FamousPersonAvatar}}"></image>
+          </view> -->
+
+
+          <view class="content senstenceItem" bindtap="clickSenstence" data-sensetenceid="{{sItem._id}}"
+            data-famouspersonname="{{sItem.FamousPersonName}}" data-senstence="{{sItem.Senstence}}"
+            data-famouspersonavatar="{{sItem.FamousPersonAvatar}}" data-source="{{sItem.Source}}">
+            <view class="text-grey">{{sItem.FamousPersonName}}</view>
+            <view class="text-gray text-sm flex">
+              <text class="text-cut contentFontClass">
+                {{sItem.Senstence}}
+              </text>
+            </view>
+          </view>
+          <!-- <view class="action">
+            <view class="text-grey text-xs">22:20</view>
+            <view class="cu-tag round bg-grey sm">5</view>
+          </view> -->
+        </view>
+      </view>
+
+    </view>
+  </scroll-view>
+</view>
+
+
+
+
+<van-popup round custom-style='width:{{editPopWidth}}px;height:{{editPopHeight}}px;' show="{{ editShow }}"
+  bind:close="closeEdit">
+  <!--编辑类目-->
+  <view class='popClass'>
+
+
+
+    <van-image
+        class="imageAvatarClass"
+  width="60px"
+  height="60px"
+  round
+  fit="cover"
+  bindtap="clickAvatar" 
+  src="{{editPersonAvatar}}"
+/>
+
+
+     
+  
+      <!-- <view class="cu-avatar round lg" bindtap="clickAvatar">
+        <image  class="imageAvatarClass" mode="aspectFit" src="{{editPersonAvatar}}"></image>
+      </view> -->
+      <view class="editSenstenceContent">
+        <view class="editPersonNameClass">
+          
+          {{ editPersonName }}
+        </view>
+          <view class="editSenstenceClass">
+            {{ editSenstence }}
+          </view>
+          <view class="editSourceClass">
+            {{ editSource }}
+          </view>
+          <view class="editBottonClass">
+            <view class='editFavClass'>
+              <van-image wx:if="{{userlike}}" bind:click="cancelFav" round width="25px" height="25px"
+              src="/image/favClicked.svg" />
+            <van-image wx:else round width="25px" bind:click="addFav" height="25px" src="/image/fav.svg" />
+            </view>
+            <view>
+
+            </view>
+          </view>
+      </view>
+ 
+
+
+
+  </view>
+</van-popup>

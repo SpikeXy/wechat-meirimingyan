@@ -1,0 +1,90 @@
+<cu-custom bgColor="bg-black" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">名人管理</view>
+</cu-custom>
+
+<view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
+	<view class="search-form round">
+		<text class="cuIcon-search"></text>
+		<input type="text" bindinput="changeSearchWord" bindconfirm='searchPerson' placeholder="输入搜索的关键词" confirm-type="search"></input>
+	</view>
+	<view class="action">
+		<button  bindtap='searchPerson' class="cu-btn bg-gradual-green shadow-blur round">搜索</button>
+	</view>
+</view>
+<scroll-view scroll-y class="indexes" style="height:calc(100vh - {{CustomBar}}px - 50px)" scroll-with-animation="true" scroll-into-view="indexes-{{listCurID}}" enable-back-to-top="true">
+	<block wx:for="{{list}}" wx:key wx:for-item="listItem">
+		<view class="padding indexItem-{{listItem.key}}" id="indexes-{{listItem.key}}" data-index="{{listItem.key}}">{{listItem.key}}</view>
+		<view class="cu-list menu-avatar no-padding">
+			<view class="cu-item" wx:key wx:for="{{listItem.entityArray}}" wx:for-item="nameItem" wx:for-index="sub" bindtap="editPop" 
+			data-parentId = "{{listItem._id}}"
+			data-name="{{listItem.entityArray[sub].Name}}" 
+			data-categoryid="{{listItem.entityArray[sub].CategoryId}}" 
+			data-id="{{listItem.entityArray[sub]._id}}"
+			data-personindexesid="{{listItem._id}}"
+			data-avatar="{{listItem.entityArray[sub].Avatar}}"
+			>
+
+			<van-image
+        class="avatarNewClass"
+  width="40px"
+  height="40px"
+  round
+  fit="cover"
+  src="{{listItem.entityArray[sub].Avatar}}"
+/>
+
+
+				<!-- <view class="cu-avatar round lg">
+				    <image mode="aspectFit" src="{{listItem.entityArray[sub].Avatar}}"></image>
+				</view> -->
+				<view class="content">
+					<view class="text-grey" style="font-size:42rpx;">{{listItem.entityArray[sub].Name}}
+						<!-- <text class="text-abc">{{list[sub]}}</text>君 -->
+					</view>
+					<!-- <view class="text-gray text-sm">
+            有主子需要伺候
+          </view> -->
+				</view>
+			</view>
+		</view>
+	</block>
+</scroll-view>
+<view class="indexBar" style="height:calc(100vh - {{CustomBar}}px - 50px)">
+	<view class="indexBar-box" bindtouchstart="tStart" bindtouchend="tEnd" catchtouchmove="tMove">
+		<view class="indexBar-item" wx:for="{{list}}" wx:for-item="listItem" wx:key id="{{index}}" bindtouchstart="getCur" bindtouchend="setCur">{{listItem.key}}</view>
+	</view>
+</view>
+<!--选择显示-->
+<view hidden="{{hidden}}" class="indexToast">
+	{{listCur}}
+</view>
+
+<van-popup round custom-style='margin-top:20px;width:{{addPopWidth}}px;height:{{addPopHeight}}px;' show="{{ editPopShow }}" bind:close="closeEditPopShow">
+	<van-cell-group class='popClass'>
+		<van-field label="人名" model:value="{{ personName }}" placeholder="" border="{{ true }}" />
+		<view class="cu-form-group margin-top" style="margin-bottom:8px;">
+			<view class="labelTitle">分类</view>
+			<picker bindchange="pickerChange" value="{{pickerIndex}}" range="{{picker}}">
+				<view class="picker">
+					{{pickerIndex !=-1 ?picker[pickerIndex]:'请选择分类'}}
+				</view>
+			</picker>
+		</view>
+		<view class="categoryPhotoClass" style="margin-top:30px;">
+			<view class="categoryPhotoText">头像</view>
+			<van-uploader max-count="1" file-list="{{ avatarFileList }}" bind:delete="deleteAvatar" bind:after-read="afterRead" />
+		</view>
+
+		<view class="categoryPhotoClass" style="width:60%;">
+			<view class="categoryPhotoText">相册</view>
+			<van-uploader max-count="10" file-list="{{ imageFileList }}" bind:delete="deleteImage" bind:after-read="afterImageRead" />
+		</view>
+
+		<view class="bottomButtonClass">
+			<van-button type="danger" bindtap="deletePerson">删除</van-button>
+						<van-button round  type="default" bindtap="cancelPersonEdit">取消</van-button>
+			<van-button type="primary" bindtap="confirmPersonEdit">确认</van-button>
+		</view>
+	</van-cell-group>
+</van-popup>

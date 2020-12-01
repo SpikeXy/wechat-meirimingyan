@@ -1,0 +1,46 @@
+<!--pages/aboutUs/index.wxml-->
+<cu-custom bgColor="bg-black" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">关于我们</view>
+</cu-custom>
+
+<view class="container">
+
+	<view wx:if="{{isAdmin}}">
+		<view class="space"></view>
+		<navigator url="/pages/personMgr/index">
+			<view class="menu-item">
+				<view class="l">名人管理</view>
+				<image class="next" src="/image/next.svg"></image>
+			</view>
+		</navigator>
+		<view class="space"></view>
+		<navigator url="/pages/senstenceMgr/index">
+			<view class="menu-item">
+				<view class="l">名言管理</view>
+				<image class="next" src="/image/next.svg"></image>
+			</view>
+		</navigator>
+		<view class="space"></view>
+		<navigator url="/pages/personCategory/index">
+			<view class="menu-item">
+				<view class="l">名人类目管理</view>
+				<image class="next" src="/image/next.svg"></image>
+			</view>
+		</navigator>
+		<view class="space"></view>
+		<navigator url="/pages/senstenceCategory/index">
+			<view class="menu-item">
+				<view class="l">名言类目管理</view>
+				<image class="next" src="/image/next.svg"></image>
+			</view>
+		</navigator>
+	</view>
+	<view wx:else class="viewContent">
+		<view class="title">感谢</view>
+		<view class="content">
+			{{thanksContent}}
+		</view>
+		<image class='qrImageClass' src="{{qrImageUrl}}" mode="aspectFit"  />
+	</view>
+</view>

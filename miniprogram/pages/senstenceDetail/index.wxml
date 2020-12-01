@@ -1,0 +1,44 @@
+<cu-custom bgColor="bg-black" isBack="{{false}}">
+  <view slot="content">名言详情</view>
+</cu-custom>
+
+<view class="page-section swiper" >
+	<swiper bindchange='changeCurrentItem'
+	 class="swiperClass" 
+	 indicator-dots="{{false}}" 
+	 autoplay="{{false}}"
+		vertical="true"
+		 duration="500">
+		<block wx:for="{{groupList}}" wx:key>
+			<swiper-item item-id="{{item._id}}">
+				<view class="card" style='height:{{cardHeight}}px!important'>
+					<view class="font-margin-class">{{item.Senstence}}</view>
+					<view class="cardSource">
+						<view class="cardSourceText" style="width:60%;" >{{item.Source}}</view>
+					</view>
+
+					<view class="card-inner-line" style="bottom:{{navBarHeight}}px">
+						<view class="avatarClass">
+							<van-image lazy-load bind:click="clickAvatar" 
+								custom-class="avatarCustomClass"
+								wx:if="{{item.Avatar == undefined || item.Avatar == null || item.Avatar == ''}}" round width="55px"
+								height="55px" src="/image/nologin.svg" />
+							<van-image lazy-load wx:else round width="55px" 
+							 height="55px" custom-class="avatarCustomClass" src="{{item.Avatar}}" />
+
+						</view>
+
+						<view class="carPersonName"> {{item.Name}}</view>
+            <view class="rightFav">
+			
+                <button  bindtap="returnToIndex"   style="width:35px;color:white;" class="cu-btn cuIcon-exit bg-grey shadow" ></button>
+						</view>
+						
+					</view>
+				</view>
+			</swiper-item>
+		</block>
+	</swiper>
+</view>
+
+

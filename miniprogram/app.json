@@ -1,0 +1,83 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/index",
+    "pages/user/index",
+    "pages/aboutUs/index",
+    "pages/personMgr/index",
+    "pages/indexes/index",
+    "pages/favPerson/index",
+    "pages/theme/index",
+    "pages/identity/index",
+    "pages/senstenceMgr/index",
+    "pages/personCategory/index",
+    "pages/reIndex/index",
+    "pages/favSenstence/index",
+    "pages/personDetail/index",
+    "senstenceCategory/index",
+    "pages/senstenceDetail/index",
+    "component/shareBox/index"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "custom": false,
+    "color": "#7A7E83",
+    "selectedColor": "#fff",
+    "borderStyle": "black",
+    "backgroundColor": "#333333",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/index_unclicked.png",
+        "selectedIconPath": "image/index_click.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "iconPath": "image/category_fill_unclick.png",
+        "selectedIconPath": "image/category_fill_clicked.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/indexes/index",
+        "iconPath": "image/indexes_unclick.png",
+        "selectedIconPath": "image/indexes_clicked.png",
+        "text": "搜索"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "image/my_unclick.png",
+        "selectedIconPath": "image/my_clicked.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "cu-custom": "component/colorui/components/cu-custom",
+    "van-button": "component/@vant/weapp/button/index",
+    "van-sidebar": "component/@vant/weapp/sidebar/index",
+    "van-sidebar-item": "component/@vant/weapp/sidebar-item/index",
+    "van-uploader": "component/@vant/weapp/uploader/index",
+    "van-index-bar": "component/@vant/weapp/index-bar/index",
+    "van-index-anchor": "component/@vant/weapp/index-anchor/index",
+    "van-grid": "component/@vant/weapp/grid/index",
+    "van-grid-item": "component/@vant/weapp/grid-item/index",
+    "van-field": "component/@vant/weapp/field/index",
+    "van-popup": "component/@vant/weapp/popup/index",
+    "van-swipe-cell": "component/@vant/weapp/swipe-cell/index",
+    "van-image": "component/@vant/weapp/image/index",
+    "van-dropdown-menu": "component/@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "component/@vant/weapp/dropdown-item/index",
+
+    "share-box": "component/shareBox/index"
+  },
+  "useExtendedLib":{
+    "kbone": true,
+    "weui": true
+  }
+}

@@ -1,0 +1,64 @@
+<cu-custom bgColor="bg-black" isBack="{{false}}">
+  <view slot="content">索引</view>
+</cu-custom>
+
+
+<view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" bindinput="changeSearchWord" bindconfirm='searchPerson' placeholder="输入搜索的关键词"
+      confirm-type="search"></input>
+  </view>
+  <view class="action">
+    <button bindtap='searchPerson' class="cu-btn bg-gradual-green shadow-blur round">搜索</button>
+  </view>
+</view>
+<scroll-view scroll-y class="indexes" style="height:calc(100vh - {{CustomBar}}px - 50px)" scroll-with-animation="true"
+  scroll-into-view="indexes-{{listCurID}}" enable-back-to-top="true">
+  <block wx:for="{{list}}" wx:key wx:for-item="listItem">
+    <view class="padding indexItem-{{listItem.key}}" id="indexes-{{listItem.key}}" data-index="{{listItem.key}}">
+      {{listItem.key}}</view>
+    <view class="cu-list menu-avatar no-padding">
+      <view class="cu-item" style="padding-right:82rpx;" wx:key wx:for="{{listItem.entityArray}}" wx:for-item="nameItem"
+        wx:for-index="sub">
+        <van-image
+        class="avatarNewClass"
+  width="40px"
+  height="40px"
+  round
+  fit="cover"
+  src="{{listItem.entityArray[sub].Avatar}}"
+/>
+        <!-- <view class="cu-avatar round lg" >
+          <image mode="widthFix" style="border-radius:50%;width:50px;" src="{{listItem.entityArray[sub].Avatar}}"></image>
+        </view> -->
+        <view class="content">
+          <view style="font-size:42rpx;" class="text-grey">{{listItem.entityArray[sub].Name}}
+
+            <!-- <text class="text-abc">{{list[sub]}}</text>君 -->
+          </view>
+          <!-- <view class="text-gray text-sm">
+            有主子需要伺候
+          </view> -->
+        </view>
+        <!--加上一个心型的按钮代表喜欢-->
+        <button wx:if="{{listItem.entityArray[sub].Like}}" class="cu-btn cuIcon-likefill  shadow"
+          style="background-color:#fff" data-key="{{listItem.key}}" data-sub="{{sub}}" bindtap='cancelFav'
+          data-personid="{{listItem.entityArray[sub]._id}}"></button>
+        <button wx:else class="cu-btn cuIcon-like  shadow" style="background-color:#fff" bindtap='addFav'
+          data-key="{{listItem.key}}" data-sub="{{sub}}" data-personid="{{listItem.entityArray[sub]._id}}"></button>
+      </view>
+    </view>
+  </block>
+</scroll-view>
+<view class="indexBar" style="height:calc(100vh - {{CustomBar}}px - 50px)">
+  <view class="indexBar-box" bindtouchstart="tStart" bindtouchend="tEnd" catchtouchmove="tMove">
+    <view class="indexBar-item" wx:for="{{list}}" wx:for-item="listItem" wx:key id="{{index}}" bindtouchstart="getCur"
+      bindtouchend="setCur">{{listItem.key}}</view>
+  </view>
+</view>
+<!--选择显示-->
+<view hidden="{{hidden}}" class="indexToast">
+  {{listCur}}
+</view>
+

@@ -1,0 +1,45 @@
+<cu-custom bgColor="bg-black" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">名人类目管理</view>
+</cu-custom>
+
+<view class="mainContainer">
+	<van-grid column-num="3" icon-size="55px">
+
+		<van-grid-item bindtap="clickGridItem" id="{{categoryItem._id}}" wx:for="{{categories}}" wx:for-item='categoryItem' icon="{{categoryItem.image}}" text="{{categoryItem.name}}" />
+	</van-grid>
+	<van-button type="primary" size="large" bindtap="addCategory">新增类目</van-button>
+</view>
+
+
+<van-popup round custom-style='width:{{addPopWidth}}px;height:{{addPopHeight}}px;' show="{{ addCategoryShow }}" bind:close="closeAddCategoryShow"   
+  >
+	<!--新增类目-->
+	<van-cell-group class='popClass'>
+			<van-field label="类名" model:value="{{ addCategoryName }}" placeholder="必须是中文" border="{{ true }}" />
+
+      <view class="categoryPhotoClass">
+        <view class="categoryPhotoText">类目图片</view>
+  			<van-uploader  max-count="1" file-list="{{ addFileList }}" bind:delete="deleteAddCategory" bind:after-read="afterAddRead" />
+      </view>
+
+		<van-button type="primary" size="large" bindtap="confirmAddCategory">新增</van-button>
+	</van-cell-group>
+
+
+</van-popup>
+
+<van-popup round  custom-style='width:{{editPopWidth}}px;height:{{editPopHeight}}px;'  show="{{ editCategoryShow }}" bind:close="closeEditCategoryShow" 
+>
+	<!--编辑类目-->
+  	<van-cell-group class='popClass'>
+			<van-field label="类名" model:value="{{ editCategoryName }}" placeholder="必须是中文" border="{{ true }}" />
+
+      <view class="categoryPhotoClass">
+        <view class="categoryPhotoText">类目图片</view>
+  			<van-uploader  max-count="1" file-list="{{ editFileList }}" bind:delete="deleteEditCategory"  bind:after-read="afterEditRead" />
+      </view>
+
+		<van-button type="primary" size="large" bindtap="confirmEditCategory">确认</van-button>
+    </van-cell-group>
+</van-popup>

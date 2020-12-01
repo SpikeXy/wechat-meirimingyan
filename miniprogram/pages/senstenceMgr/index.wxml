@@ -1,0 +1,92 @@
+<cu-custom bgColor="bg-black" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">名言管理</view>
+</cu-custom>
+
+
+<view class='load-progress {{loadProgress!=0?"show":"hide"}}' style="top:{{CustomBar}}px;">
+  <view class='load-progress-bar bg-green' style="transform: translate3d(-{{100-loadProgress}}%, 0px, 0px);"></view>
+  <view class='load-progress-spinner text-green'></view>
+</view>
+
+<view class="page-section swiper">
+	<swiper bindchange='changeCurrentItem' class="swiperClass" indicator-dots="{{false}}" autoplay="{{false}}"
+		vertical="true" duration="500">
+		<block wx:for="{{groupList}}" wx:key>
+			<swiper-item item-id="{{item._id}}">
+				<view class="card" style='height:{{cardHeight}}px!important'>
+					<view class="font-margin-class">{{item.Senstence}}</view>
+					<view class="cardSource">{{item.Source}}</view>
+					<view class="carPersonName"> {{item.Name}}</view>
+				</view>
+			</swiper-item>
+		</block>
+	</swiper>
+
+</view>
+
+<view class="cu-bar tabbar  bg-white editBar">
+	<view class="action text-green">
+		<view class="cuIcon-edit" bindtap="editItem"></view> 编辑
+	</view>
+
+	<view class="action text-gray add-action">
+		<button class="cu-btn cuIcon-add bg-green shadow" bindtap='addItem'></button>
+		新增
+	</view>
+	<view class="action text-gray">
+		<view class="cuIcon-delete" bindtap="deleteItem">
+
+		</view>
+		删除
+	</view>
+
+</view>
+
+
+
+<van-popup round custom-style='width:{{editPopWidth}}px;height:{{editPopHeight}}px;' show="{{ editShow }}"
+	bind:close="closeEdit">
+	<!--编辑类目-->
+	<van-cell-group class='popClass'>
+
+		<van-field model:value="{{ editSenstence }}" label="名言" type="textarea" placeholder="" autosize border="{{ true }}" />
+		<van-field label="出处" model:value="{{ editSource }}" placeholder="" border="{{ true }}" />
+
+		<view class="cu-form-group margin-top">
+			<view class="labelTitle">分类</view>
+			<picker bindchange="pickerChange" value="{{pickerIndex}}" range="{{picker}}">
+				<view class="picker">
+					{{pickerIndex !=-1 ?picker[pickerIndex]:'请选择分类'}}
+				</view>
+			</picker>
+		</view>
+
+		<van-field disabled="{{true}}" label="名人" model:value="{{ editPersonName }}" placeholder="" border="{{ true }}" />
+		<van-button hairline="{{false}}" type="primary" size="large" bindtap="confirmEdit">确认</van-button>
+	</van-cell-group>
+</van-popup>
+
+
+
+<van-popup round custom-style='width:{{editPopWidth}}px;height:{{editPopHeight}}px;' show="{{ addShow }}"
+	bind:close="closeAdd">
+	<!--新增类目-->
+	<van-cell-group class='popClass'>
+
+		<van-field value="{{ addSenstence }}" label="名言" type="textarea" placeholder="" autosize border="{{ true }}" />
+		<van-field label="出处" model:value="{{ addSource }}" placeholder="" border="{{ true }}" />
+		<view class="cu-form-group margin-top">
+			<view class="labelTitle">分类</view>
+			<picker bindchange="pickerChange" value="{{pickerIndex}}" range="{{picker}}">
+				<view class="picker">
+					{{pickerIndex !=-1 ?picker[pickerIndex]:'请选择分类'}}
+				</view>
+			</picker>
+		</view>
+		<van-field center clearable use-button-slot label="名人" model:value="{{ addPersonName }}" placeholder="">
+			<!-- <van-button slot="button" size="small" bindtap="checkPersonName" type="primary">检查</van-button> -->
+		</van-field>
+		<van-button hairline="{{false}}" type="primary" size="large" bindtap="confirmAdd">确认</van-button>
+	</van-cell-group>
+</van-popup>

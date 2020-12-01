@@ -1,0 +1,94 @@
+/* pages/component/nav/nav.wxss */
+.VerticalNav.nav {
+  width: 200rpx;
+  white-space: initial;
+}
+
+.VerticalNav.nav .cu-item {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  margin: 0;
+  border: none;
+  height: 50px;
+  position: relative;
+}
+
+.VerticalNav.nav .cu-item.cur {
+  background-color: #f1f1f1;
+}
+.VerticalNav.nav .cu-item.cur::after {
+  content: "";
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  position: absolute;
+  background-color: currentColor;
+  top: 0;
+  right: 0rpx;
+  bottom: 0;
+  margin: auto;
+}
+.VerticalBox{
+  display: flex;
+}
+.VerticalMain{
+  background-color: #f1f1f1;
+}
+.contentFontClass{
+  font-size:13px;
+
+}
+.popClass{
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  width:100%;
+}
+.editSenstenceContent{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 100%;
+  width: 65%;
+}
+.editPersonNameClass{
+  font-size:22px;
+  margin-top:20px;
+}
+.editSenstenceClass{
+  font-size:15px;
+  margin-right:10px;
+  margin-top: 20px;
+}
+.editSourceClass{
+  display: flex;
+  justify-content: flex-end;
+  margin-right:10px;
+  margin-top:20px;
+  font-size:14px;
+}
+.editBottonClass{
+  justify-self: flex-end;
+  align-self: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  margin-right:10px;
+  margin-top:20px;
+  position: absolute;
+  bottom : 33px;
+  right: 7px;
+}
+.imageAvatarClass{
+  margin-bottom: 20px;
+  align-self:flex-end;
+  width:65px;
+  margin-left:8px;
+}
+.avatarNewClass{
+  position: absolute;
+  left:8px;
+
+  top:10px;
+}

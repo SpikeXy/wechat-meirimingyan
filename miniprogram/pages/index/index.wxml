@@ -1,0 +1,63 @@
+<cu-custom bgColor="bg-black" isBack="{{false}}">
+	<view slot="content">每天名言</view>
+</cu-custom>
+
+<view class='load-progress {{loadProgress!=0?"show":"hide"}}' style="top:{{CustomBar}}px;">
+	<view class='load-progress-bar bg-green' style="transform: translate3d(-{{100-loadProgress}}%, 0px, 0px);"></view>
+	<view class='load-progress-spinner text-green'></view>
+</view>
+
+
+<view class="page-section swiper">
+	<swiper bindchange='changeCurrentItem' class="swiperClass" indicator-dots="{{false}}" autoplay="{{false}}"
+		vertical="true" duration="500">
+		<block wx:for="{{groupList}}" wx:key>
+			<swiper-item item-id="{{item._id}}">
+				<view class="mainContent" style='height:{{cardHeight}}px!important'>
+					<view class="card" style='margin-bottom:12px;height:{{cardHeight - 52}}px!important'>
+					<view class="font-margin-class">
+						{{item.Senstence}}
+					</view>
+					<view class="cardSource">
+						<view class="cardSourceText" style="width:60%;">{{item.Source}}</view>
+					</view>
+				</view>
+					<view class="card-inner-line" >
+						<view class="avatarClass">
+							<van-image custom-class="avatarCustomClass"
+								wx:if="{{item.Avatar == undefined || item.Avatar == null || item.Avatar == ''}}" round width="40px"
+								height="40px" height="55px" src="/image/nologin.svg" />
+							<van-image wx:else round width="65px" data-personid="{{item.FamousPersonId}}" bind:click="clickAvatar"
+								height="65px" custom-class="avatarCustomClass" src="{{item.Avatar}}" />
+
+						</view>
+
+						<view class="carPersonName"> {{item.Name}}</view>
+						<view class="rightFav">
+
+							<van-image wx:if="{{item.UserLike}}" data-itemid="{{item._id}}" data-senstenceid="{{item._id}}"
+								bind:click="cancelFav" round width="25px" height="25px" src="/image/favClicked.svg" />
+							<van-image wx:else round width="25px" data-itemid="{{item._id}}" data-senstenceid="{{item._id}}"
+								bind:click="addFav" height="25px" src="/image/fav.svg" />
+							<button  class="shareButtonClass" open-type="getUserInfo"
+								bindgetuserinfo="getUserInfo">
+
+								<van-image width="25px" height="25px" src="/image/share.svg"></van-image>
+							</button>
+		
+							<share-box shareBgImage="{{shareBgImage}}" qrCodeImage="{{qrCodeImage}}" currentSource="{{currentSource}}"
+								currentPersonName="{{currentPersonName}}" currentSenstence="{{currentSenstence}}"
+								currentPersonAvatar="{{currentPersonAvatar}}" nickName="{{nickName}}"
+								 avatarUrl="{{avatarUrl}}"
+								isCanDraw="{{isCanDraw}}" bind:initData="createShareImage" wx:if="{{showShare}}" />
+							<!-- <button   open-type="share"  class="shareButtonClass" >
+									<van-image width="25px"  height="25px" class="shareImage" src="/image/share.svg" ></van-image>
+								</button> -->
+						</view>
+
+					</view>
+				</view>
+			</swiper-item>
+		</block>
+	</swiper>
+</view>

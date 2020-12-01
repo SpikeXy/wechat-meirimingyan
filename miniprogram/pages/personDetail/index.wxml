@@ -1,0 +1,62 @@
+<!--miniprogram/pages/personDetail/index.wxml-->
+<cu-custom bgColor="bg-black" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">名人详情</view>
+</cu-custom>
+
+<view class="page-section swiper">
+	<swiper bindchange='changeCurrentItem' class="swiperClass" indicator-dots="{{false}}" autoplay="{{false}}" duration="500">
+		<block wx:for="{{groupList}}" wx:key>
+			<swiper-item item-id="{{item._id}}">
+				<view class="card" style='height:{{cardHeight}}px!important'>
+					<swiper vertical="{{true}}" class="screen-swiper " indicator-dots="{{false}}" circular="true" autoplay="{{true}}" interval="5000" duration="500">
+						<swiper-item wx:for="{{item.Images}}" wx:key wx:for-item="avatarItem" ver>
+							<image src="{{avatarItem.url}}" mode="aspectFill" wx:if="{{avatarItem.type=='image'}}"></image>
+							<video src="{{avatarItem.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{avatarItem.type=='video'}}"></video>
+						</swiper-item>
+					</swiper>
+					<view class="detailPersonInfo">
+						<view>
+							<van-image lazy-load round width="55px" bind:click="clickAvatar" height="55px" src="{{item.Avatar}}" />
+						</view>
+						<view>
+							<view>
+								<view class="personName">{{item.Name}}</view>
+							</view>
+							<view>
+								<view class="customLabel">出生日期</view>
+								<view>{{item.BirdthDay}}</view>
+							</view>
+							<view>
+								<view class="customLabel">逝世日期</view>
+								<view class="customContent">{{item.DeadthDay}}</view>
+							</view>
+							<view>
+								<view class="customLabel">代表作</view>
+								<view class="customContent">{{item.HandWork}}</view>
+							</view>
+							<view>
+								<view class="customLabel">民族</view>
+								<view class="customContent">{{item.Nation}}</view>
+							</view>
+							<view>
+								<view class="customLabel">毕业院校</view>
+								<view class="customContent">{{item.University}}</view>
+							</view>
+							<view>
+								<view class="customLabel">毕业院校</view>
+								<view class="customContent">{{item.University}}</view>
+							</view>
+							<view class="lastContextElement">
+								<view class="customLabel">生平简介</view>
+								<view class="customContent">{{item.Description}}</view>
+							</view>
+						</view>
+					</view>
+
+				</view>
+			</swiper-item>
+		</block>
+	</swiper>
+
+</view>

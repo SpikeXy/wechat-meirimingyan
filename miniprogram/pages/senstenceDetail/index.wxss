@@ -1,0 +1,96 @@
+page{
+  overflow:hidden;
+  height:100%;
+  width: 100%;
+}
+.page-section{
+  height:100%;
+  width:100%;
+
+}
+.swiperClass{
+  height:100%;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.card{
+    /* border:solid 3px #1f7db3; */
+    overflow-y: auto;
+    margin-top: 10px;
+    /* border: 1px solid #ccc; */
+    box-shadow: 1px 8px 8px 1px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    /* border-radius: 5px; */
+    margin-right: 10px;
+    margin-left:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom-left-radius:140px;
+    border-bottom-right-radius:10px;
+}
+.card-inner-line{
+  position: fixed;
+  left:0;
+  width:100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+  font-size:13px;
+  text-indent: 20px;
+  height: 50px;
+  border-top:2px solid #ccc;
+  /* border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px; */
+}
+.cardSource{
+
+  padding-bottom: 15px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  
+}
+.cardSourceText{
+  font-size: 15px;
+  text-align: right;
+
+}
+.carPersonName{
+  font-size:15px;
+
+  margin-top: 5px;
+}
+.font-margin-class{
+  font-size:20px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top:15px;
+  text-indent: 2em;
+}
+
+.avatarClass{
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rightFav{
+  margin-top: 5px;
+  margin-right:10px;
+}
+.avatarCustomClass{
+  border: 2px solid #ccc;
+  box-shadow: 7px 0px 7px rgba(0,0,0,0.9)
+}
